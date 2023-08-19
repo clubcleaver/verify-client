@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Button from "../button/Button";
 import Input from "../input/Input";
 import classes from "./Login.module.css";
+import variables from "../../layout/variables"
 
 //Login Component takes the setLoggedIn function as "callback" in props to set the loggedIn state in Layout component.
 
@@ -31,8 +32,9 @@ function Login(props) {
 
   //Handle Login (If login successful update props.callback)
 
-  const loginUser = async () => {
-    const loggedInUser = await fetch("http://localhost:3000/user/auth", {
+  const loginUser = async (event) => {
+    event.preventDefault()
+    const loggedInUser = await fetch(variables.URL + "/user/auth", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -56,11 +58,12 @@ function Login(props) {
       .catch((e) => console.log(e));
   };
 
-  const registerUser = async () => {
+  const registerUser = async (event) => {
+    event.preventDefault()
     console.log(key);
     console.log(userName);
     console.log(userEmail);
-    const registerUser = await fetch("http://localhost:3000/user/create", {
+    const registerUser = await fetch(variables.URL + "/user/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -77,12 +80,13 @@ function Login(props) {
         if (data.success) {
             loginUser()
         } else {
-            setIncorrectLogin(true)
+            setIncorrectLogin(false)
         }
         console.log(data);
       })
       .catch((e) => {
-        console.log(e);
+        setIncorrectLogin(false);
+        console.log(e)
       });
   };
 
@@ -91,7 +95,7 @@ function Login(props) {
       <div className={classes.loginForm}>
         <h1>login to Dashboard</h1>
         <p>Please provide registered email and password</p>
-        <div className={classes.loginForm}>
+        <form className={classes.loginForm}>
           {register && (
             <Input label="Name" value={userName} callback={setUserName} />
           )}
@@ -115,14 +119,14 @@ function Login(props) {
           ) : (
             <Button text="Login" color="black" callback={loginUser} />
           )}
-        </div>
+        </form>
         <div>
           <p>
             Or{" "}
             <a onClick={toggleRegister}>{!register ? "Register" : "Login:"}</a>{" "}
             {!register && "a New User:"}
           </p>
-          {!IncorrectLogin ? <h2>Login Failed Try Again</h2> : ""}
+          {!IncorrectLogin ? <h2>Operation Failed Try Again</h2> : ""}
         </div>
       </div>
     </>

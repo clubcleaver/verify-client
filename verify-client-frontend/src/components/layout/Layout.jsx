@@ -2,6 +2,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import { useState, useEffect } from "react";
 import Dashboard from "./dashboard/Dashboard";
 import Login from "./login/Login";
+import variables from "../layout/variables"
 
 function Layout() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -10,11 +11,12 @@ function Layout() {
     // Todo: need to extend functionality to verify token at backend
     const token = localStorage.token;
     if (token) {
-      fetch("http://localhost:3000/user/checkToken", {
+      fetch(variables.URL + "/user/checkToken", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "authorization": "Bearer " + token,
+          
         },
       })
         .then((resp) => resp.json())

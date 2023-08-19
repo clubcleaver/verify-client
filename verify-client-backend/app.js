@@ -8,6 +8,12 @@ const { sequelize, dbConnect } = require("./db.js");
 // CORS setup
 app.use(cors({origin:'*'}))
 
+// logging Connections
+// app.use("*", (req, res, next) => {
+//   console.log(req.ip)
+//   next()
+// })
+
 
 // Data Router
 const dataRouter = require("./dataRouter");
