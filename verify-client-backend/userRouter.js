@@ -4,11 +4,22 @@ const bcrypt = require("bcrypt");
 const router = express.Router();
 const { User, sequelize } = require("./db.js");
 const jwt = require("jsonwebtoken");
+const { authCheck } = require("./authMiddleware");
+
+
+router.post("/checkToken", authCheck, (req, res) => {
+  if (req.userAuth) {
+    res.send({success: true})
+  } else {
+    res.send({success: false})
+  }
+})
 
 // Registration
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 router.post("/create", async (req, res) => {
   const { name, password, email, iacID } = req.body;
+  console.log(iacID)
   // Check if the User knows a secret key, serves as authorization ... Key should be changed often
   if (iacID === process.env.IAC_KEY) {
     // Create Password Hash

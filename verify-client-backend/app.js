@@ -1,8 +1,13 @@
 require('dotenv').config()
+const cors = require('cors')
 // console.log(process.env)
 const express = require("express");
 const app = express();
 const { sequelize, dbConnect } = require("./db.js");
+
+// CORS setup
+app.use(cors({origin:'*'}))
+
 
 // Data Router
 const dataRouter = require("./dataRouter");

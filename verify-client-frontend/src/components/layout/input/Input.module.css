@@ -1,0 +1,21 @@
+.containe{
+    /* position: relative; */
+    width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* height: auto; */
+}
+.label{
+    /* position: absolute; */
+    display: inline-block;
+    width: 8rem;
+    text-align: left;
+    margin: .2rem;
+}
+.input{
+    padding: .4rem;
+    /* margin: .2rem; */
+    font-size: 1rem;
+
+}
