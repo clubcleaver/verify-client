@@ -3,6 +3,9 @@ const router = express.Router();
 const { Client, User, sequelize } = require("./db.js");
 const nanoid = require("nanoid");
 const { authCheck } = require("./authMiddleware");
+//Multer to handle the file upload functionality on Create new Route
+// const multer = require('multer')
+// const upload = multer({dest: 'uploads/'})
 
 // get Client
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -34,7 +37,8 @@ router.get("/", async (req, res) => {
 router.post("/", authCheck, async (req, res) => {
   if (req.userAuth) {
     const { firstName, lastName, dob, status, document } = req.body;
-    if (firstName && lastName && dob && status && document) {
+    // Todo: When document upload functionality is added check for document as well.
+    if (firstName && lastName && dob && status) {
       const createdUser = await Client.create({
         clientId: "IAC-" + nanoid(6),
         firstName: firstName,

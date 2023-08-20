@@ -19,7 +19,7 @@ const Client = sequelize.define('Client', {
     lastName: DataTypes.STRING,
     dob: DataTypes.STRING,
     status: DataTypes.BOOLEAN,
-    download: DataTypes.BLOB('long')
+    // download: DataTypes.BLOB('long')
 });
 
 const User = sequelize.define('User', {

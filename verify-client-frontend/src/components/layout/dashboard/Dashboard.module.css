@@ -1,0 +1,8 @@
+.spacer{
+    height: 3rem;
+}
+
+.options{
+    display: flex;
+    /* width: 30rem; */
+}

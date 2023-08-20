@@ -1,19 +1,17 @@
-require('dotenv').config()
-const cors = require('cors')
-// console.log(process.env)
+require("dotenv").config();
+const cors = require("cors");
 const express = require("express");
 const app = express();
 const { sequelize, dbConnect } = require("./db.js");
 
 // CORS setup
-app.use(cors({origin:'*'}))
+app.use(cors({ origin: "*" }));
 
 // logging Connections
-// app.use("*", (req, res, next) => {
-//   console.log(req.ip)
-//   next()
-// })
-
+app.use("*", (req, res, next) => {
+  console.log(req.ip);
+  next();
+});
 
 // Data Router
 const dataRouter = require("./dataRouter");
@@ -28,7 +26,7 @@ const connectdb = async () => {
   });
 };
 connectdb().catch((e) => {
-    console.log('Unable to Connect to database')
+  console.log("Unable to Connect to database");
 });
 
 // Parser

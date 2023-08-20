@@ -2,9 +2,12 @@ import { useState, useEffect } from "react";
 import Button from "../button/Button";
 import Input from "../input/Input";
 import classes from "./Login.module.css";
-import variables from "../../layout/variables"
+import variables from "../../layout/variables";
 
 //Login Component takes the setLoggedIn function as "callback" in props to set the loggedIn state in Layout component.
+
+// Components could have been devided further into subcomponents, But for scale that would increase complexity un-necessesarily
+// and may need give rise to comprehensive documentation, Which I am trying to avoid.
 
 function Login(props) {
   const [register, setRegister] = useState(false);
@@ -16,7 +19,7 @@ function Login(props) {
   const [key, setKey] = useState("");
 
   // Incorrect Login State (false is BAD)
-    const [IncorrectLogin, setIncorrectLogin] = useState(true)
+  const [IncorrectLogin, setIncorrectLogin] = useState(true);
 
   // onClick changes state to register
   const toggleRegister = () => {
@@ -33,7 +36,9 @@ function Login(props) {
   //Handle Login (If login successful update props.callback)
 
   const loginUser = async (event) => {
-    event.preventDefault()
+    if (event) {
+      event.preventDefault();
+    }
     const loggedInUser = await fetch(variables.URL + "/user/auth", {
       method: "POST",
       headers: {
@@ -47,19 +52,19 @@ function Login(props) {
       .then((resp) => resp.json())
       .then((data) => {
         if (data.success) {
-
-            props.callback(true);
-            localStorage.token = data.token;
+          props.callback(true);
+          localStorage.token = data.token;
         } else {
-            console.log(data);
-            setIncorrectLogin(false)
+          console.log(data);
+          setIncorrectLogin(false);
         }
       })
       .catch((e) => console.log(e));
   };
 
-  const registerUser = async (event) => {
-    event.preventDefault()
+  // Handle User Registeration and Login if successfull.
+  const registerUser = async (e) => {
+    e.preventDefault();
     console.log(key);
     console.log(userName);
     console.log(userEmail);
@@ -78,15 +83,17 @@ function Login(props) {
       .then((resp) => resp.json())
       .then((data) => {
         if (data.success) {
-            loginUser()
+          // Login User here
+          loginUser();
         } else {
-            setIncorrectLogin(false)
+          setIncorrectLogin(false);
         }
         console.log(data);
       })
       .catch((e) => {
+        // this state handle the error message switch.
         setIncorrectLogin(false);
-        console.log(e)
+        console.log(e);
       });
   };
 
@@ -130,7 +137,6 @@ function Login(props) {
         </div>
       </div>
     </>
-
   );
 }
 export default Login;

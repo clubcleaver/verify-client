@@ -8,9 +8,10 @@ function Layout() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
-    // Todo: need to extend functionality to verify token at backend
+    // Every Rerender checks the token validiity with API
     const token = localStorage.token;
     if (token) {
+      // Verify token with API here ...
       fetch(variables.URL + "/user/checkToken", {
         method: "POST",
         headers: {
@@ -29,7 +30,6 @@ function Layout() {
           }
         })
         .catch(e => console.log(e))
-      // Verify token with API here ...
     } else {
       setLoggedIn(false);
     }
