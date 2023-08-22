@@ -17,7 +17,7 @@ function NewEntry() {
   const [lname, setLname] = useState("");
   const [dob, setDob] = useState("");
   const [status, setStatus] = useState(true);
-  const [clientCreated, setClientCreated] = useState(false)
+  const [clientCreated, setClientCreated] = useState(false);
 
   // Submitting new Users on DB requires authentication
   const submitClient = async (e) => {
@@ -42,7 +42,7 @@ function NewEntry() {
           setFname("");
           setLname("");
           setDob("");
-          setClientCreated(true)
+          setClientCreated(data);
 
           console.log("Created User Successfully", data);
         } else {
@@ -85,7 +85,14 @@ function NewEntry() {
         {/* <Input label="PDF" type="file" /> */}
         <Button text="Submit" color="green" callback={submitClient} />
       </form>
-      { clientCreated && <h3>Client Created Successfully</h3> }
+      {clientCreated.success && (
+        <>
+          <h3>Client Created Successfully</h3>
+          <h4> ID: {clientCreated.user.clientId} </h4>
+          <h4> Name: {clientCreated.user.firstName} {clientCreated.user.lName} </h4>
+
+        </>
+      )}
     </>
   );
 }

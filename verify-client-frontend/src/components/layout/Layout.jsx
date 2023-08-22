@@ -35,7 +35,7 @@ function Layout() {
     }
   }, [loggedIn]);
 
-  return loggedIn ? <Dashboard /> : <Login callback={setLoggedIn} />; //setLoggedIn state is also handled in Login component
+  return loggedIn ? <Dashboard callback={setLoggedIn} /> : <Login callback={setLoggedIn} />; //setLoggedIn state is also handled in Login component
 }
 
 export default Layout;

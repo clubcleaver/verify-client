@@ -5,9 +5,10 @@ import Input from "../input/Input";
 import Button from "../button/Button";
 import NewEntry from "./newEntry/NewEntry";
 import Search from "./search/Search";
+import { Propane } from "@mui/icons-material";
 
 // Same as Login component, In the interest of avoiding complexity, No sub-division of components is done.
-function Dashboard() {
+function Dashboard(props) {
   const [newUser, setNewUser] = useState(true);
   const [searchById, setSearchById] = useState(false);
 
@@ -23,6 +24,11 @@ function Dashboard() {
     setNewUser(false);
   };
 
+  const logOut = () => {
+    localStorage.removeItem("token")
+    props.callback(false)
+  }
+
   return (
     <div>
       {/* Nav Options */}
@@ -34,6 +40,7 @@ function Dashboard() {
         />
 
         <Button text="Search by ID" color="black" callback={searchToggle} />
+        <Button text="Log Out" color="red" callback={logOut} />
       </div>
       <div className={classes.spacer}></div>
       {newUser && <NewEntry/>}

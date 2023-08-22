@@ -6,18 +6,25 @@ import Variables from "../../variables";
 import Userinfo from "./userinfo/Userinfo";
 // Public endpoint and serves the results searched by ID
 function Search() {
+    
   const [query, setQuery] = useState("");
   const [foundUser, setFoundUser] = useState("");
-
+  const [foundUserError, setFoundUserError] = useState(true);
   const handleQuery = async (e) => {
     e.preventDefault();
+    setFoundUser("")
     await fetch(Variables.URL + "/data?clientId=" + query)
-    .then((resp) => resp.json())
-    .then((data) => {
-      setFoundUser(data);
-      console.log(data)
-    })
-    .catch((e) => console.log(e))
+      .then((resp) => resp.json())
+      .then((data) => {
+        if (data.success) {
+          setFoundUser(data);
+          console.log(data);
+          setFoundUserError(true);
+        } else {
+          setFoundUserError(false);
+        }
+      })
+      .catch((e) => console.log(e));
   };
   return (
     <>
@@ -33,8 +40,8 @@ function Search() {
       <div className={classses.spacer}></div>
 
       <div>
-        {foundUser && <Userinfo data={foundUser}/>}
-        This is where the results will be displayed.
+        {foundUser.success && <Userinfo data={foundUser} />}
+        {!foundUserError && <h2>Failed: {foundUser.message}</h2>}
       </div>
     </>
   );

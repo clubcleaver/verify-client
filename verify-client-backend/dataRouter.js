@@ -3,6 +3,7 @@ const router = express.Router();
 const { Client, User, sequelize } = require("./db.js");
 const nanoid = require("nanoid");
 const { authCheck } = require("./authMiddleware");
+const { Op } = require("sequelize");
 //Multer to handle the file upload functionality on Create new Route
 // const multer = require('multer')
 // const upload = multer({dest: 'uploads/'})
@@ -14,7 +15,7 @@ router.get("/", async (req, res) => {
   const clientId = req.query.clientId;
   if (clientId) {
     const foundUser = await Client.findOne({
-      where: { clientId: clientId.trim() },
+      where: { clientId:  clientId.trim().toLowerCase() },
     });
     if (foundUser) {
       res.send({
@@ -39,8 +40,9 @@ router.post("/", authCheck, async (req, res) => {
     const { firstName, lastName, dob, status, document } = req.body;
     // Todo: When document upload functionality is added check for document as well.
     if (firstName && lastName && dob && status) {
+      let IDGen = "IAC-" + nanoid(6)
       const createdUser = await Client.create({
-        clientId: "IAC-" + nanoid(6),
+        clientId: IDGen.toLowerCase(),
         firstName: firstName,
         lastName: lastName,
         dob: dob,
@@ -108,7 +110,10 @@ router.delete("/", authCheck, async (req, res) => {
           Client: deletedUser,
         });
       } else {
-        res.send({success: false, message: "Client Not found, No Data deleted"})
+        res.send({
+          success: false,
+          message: "Client Not found, No Data deleted",
+        });
       }
     } else {
       send.send({ success: false, message: "Invalid Client ID" });

@@ -1,15 +1,22 @@
-
+import classes from './Userinfo.module.css'
 
 function Userinfo(props) {
-    console.log(props)
+  console.log(props);
 
-    return(
-        <>
-        <p>First Name: {props.data.user.firstName}</p>
-        <p>Lase Name: {props.data.user.lastName}</p>
-        <p>Date of Birth: {props.data.user.dob}</p>
-        <p>Status: {props.data.user.status ? <h3>ACIVE</h3> : <h3>CANCELLED</h3>}</p>
-        </>
-    )
+  return (
+    <>
+      <h2>User Found:</h2>
+      <p>First Name: {props.data.user.firstName}</p>
+      <p>Lase Name: {props.data.user.lastName}</p>
+      <p>Date of Birth: {props.data.user.dob}</p>
+      <p>
+        <strong>Status:</strong>{" "}
+        
+          {" "}
+          {props.data.user.status ? <span className={classes.active}>ACIVE</span> : <span className={classes.cancelled}>CANCELLED</span>}
+        
+      </p>
+    </>
+  );
 }
-export default Userinfo
+export default Userinfo;
