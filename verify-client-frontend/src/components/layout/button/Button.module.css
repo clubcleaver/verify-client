@@ -1,24 +1,22 @@
 .button {
-    /* border-radius: .3rem; */
-    padding: .5rem 1rem;
-    /* margin: 1rem; */
-    margin-top: 1rem;
-    margin-right: 1rem;
-    cursor: pointer;
-    font-weight: bold;
-    border: none;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  border: none;
 }
-.black{
-    background-color: black;
-    color: white;
+.black {
+  background-color: black;
+  color: white;
 }
 
-.green{
-    background-color: rgb(58, 83, 0);
-    color: white;
+.green {
+  background-color: rgb(58, 83, 0);
+  color: white;
 }
 
-.red{
-    background-color: red;
-    color: white;
+.red {
+  background-color: red;
+  color: white;
 }

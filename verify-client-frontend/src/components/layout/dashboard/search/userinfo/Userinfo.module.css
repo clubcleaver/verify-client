@@ -1,9 +1,8 @@
-.active{
-    color: rgb(61, 101, 0);
-    font-size: 1.3rem;
+.active {
+  color: rgb(61, 101, 0);
+  font-size: 1.3rem;
 }
-.cancelled{
-    color: red;
-    font-size: 1.3rem;
-
+.cancelled {
+  color: red;
+  font-size: 1.3rem;
 }

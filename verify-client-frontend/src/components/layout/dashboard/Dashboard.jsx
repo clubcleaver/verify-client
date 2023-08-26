@@ -1,11 +1,8 @@
 import { useState } from "react";
-import URL from "../../layout/variables";
 import classes from "./Dashboard.module.css";
-import Input from "../input/Input";
 import Button from "../button/Button";
 import NewEntry from "./newEntry/NewEntry";
 import Search from "./search/Search";
-import { Propane } from "@mui/icons-material";
 
 // Same as Login component, In the interest of avoiding complexity, No sub-division of components is done.
 function Dashboard(props) {
@@ -25,9 +22,9 @@ function Dashboard(props) {
   };
 
   const logOut = () => {
-    localStorage.removeItem("token")
-    props.callback(false)
-  }
+    localStorage.removeItem("token");
+    props.callback(false);
+  };
 
   return (
     <div>
@@ -43,8 +40,8 @@ function Dashboard(props) {
         <Button text="Log Out" color="red" callback={logOut} />
       </div>
       <div className={classes.spacer}></div>
-      {newUser && <NewEntry/>}
-      {searchById && <Search/>}
+      {newUser && <NewEntry />}
+      {searchById && <Search />}
       <div className={classes.spacer}></div>
     </div>
   );

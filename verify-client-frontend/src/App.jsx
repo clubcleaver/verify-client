@@ -1,7 +1,8 @@
 import logo from "./assets/iac-logo.png";
 import classes from "./App.module.css";
-import Layout from "./components/layout/Layout"
+import Layout from "./components/layout/Layout";
 
+// Layout: Parent Component, own .css file
 function App() {
   return (
     <>
@@ -13,7 +14,7 @@ function App() {
           <h1>Client Database Dashboard</h1>
         </div>
         <div>
-          <Layout/>
+          <Layout />
         </div>
       </div>
     </>

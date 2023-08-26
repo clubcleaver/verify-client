@@ -1,10 +1,8 @@
-.fieldPadding{
-    display: block;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-
-
+.fieldPadding {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
-.active{
-    color: green;
+.active {
+  color: green;
 }

@@ -3,6 +3,7 @@ import Input from "../../input/Input";
 import Button from "../../button/Button";
 import classes from "./NewEntry.module.css";
 import Variables from "../../variables";
+
 // Create User Schema
 // %%%%%%%%%%%%%%%%%%%%%%
 //firstName: firstName,
@@ -23,6 +24,7 @@ function NewEntry() {
   const submitClient = async (e) => {
     e.preventDefault();
     const token = localStorage.token;
+    setStatus(e.a);
     await fetch(Variables.URL + "/data", {
       method: "POST",
       headers: {
@@ -70,9 +72,9 @@ function NewEntry() {
         />
         <label className={classes.fieldPadding}>
           Status:
-          <select>
-            <option value="true">Active</option>
-            <option value="false">Cancelled</option>
+          <select onChange={(e) => setStatus(e.target.value)}>
+            <option value={true}>Active</option>
+            <option value={false}>Cancelled</option>
           </select>
         </label>
 
@@ -88,9 +90,11 @@ function NewEntry() {
       {clientCreated.success && (
         <>
           <h3>Client Created Successfully</h3>
-          <h4> ID: {clientCreated.user.clientId} </h4>
-          <h4> Name: {clientCreated.user.firstName} {clientCreated.user.lName} </h4>
-
+          <h4> ID: {clientCreated.user.clientId.toUpperCase()} </h4>
+          <h4>
+            {" "}
+            Name: {clientCreated.user.firstName} {clientCreated.user.lName}{" "}
+          </h4>
         </>
       )}
     </>

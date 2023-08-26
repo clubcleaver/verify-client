@@ -1,21 +1,16 @@
-.containe{
-    /* position: relative; */
-    width: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* height: auto; */
+.containe {
+  width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.label{
-    /* position: absolute; */
-    display: inline-block;
-    width: 8rem;
-    text-align: left;
-    margin: .2rem;
+.label {
+  display: inline-block;
+  width: 8rem;
+  text-align: left;
+  margin: 0.2rem;
 }
-.input{
-    padding: .4rem;
-    /* margin: .2rem; */
-    font-size: 1rem;
-
+.input {
+  padding: 0.4rem;
+  font-size: 1rem;
 }

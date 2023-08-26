@@ -4,15 +4,14 @@ import Button from "../../button/Button";
 import classses from "./Search.module.css";
 import Variables from "../../variables";
 import Userinfo from "./userinfo/Userinfo";
-// Public endpoint and serves the results searched by ID
+
 function Search() {
-    
   const [query, setQuery] = useState("");
   const [foundUser, setFoundUser] = useState("");
   const [foundUserError, setFoundUserError] = useState(true);
   const handleQuery = async (e) => {
     e.preventDefault();
-    setFoundUser("")
+    setFoundUser("");
     await fetch(Variables.URL + "/data?clientId=" + query)
       .then((resp) => resp.json())
       .then((data) => {
