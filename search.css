@@ -1,0 +1,80 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+.h22 {
+  margin-bottom: 0.2rem;
+  color: rgb(0, 69, 125);
+}
+.container {
+  position: relative;
+  margin: auto;
+  width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto", sans-serif;
+}
+.mainBox {
+  margin: 2rem auto;
+  width: 100%;
+}
+.searchContainer {
+  position: relative;
+}
+#searchInput {
+  padding: 0.5rem;
+  border: 0.1rem solid rgb(152, 152, 152);
+  border-radius: 0.2rem;
+  width: 100%;
+}
+
+#searchButton {
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+  padding: 0.5rem;
+  position: absolute;
+  top: 0.13rem;
+  display: flex;
+  align-content: center;
+  right: -1rem;
+}
+#searchButton::after {
+  content: "Search";
+  margin-left: 0.2rem;
+  font-weight: bold;
+  color: rgb(123, 123, 123);
+}
+.spacer {
+  height: 2rem;
+}
+
+/* Result Box */
+#resultBox{
+}
+#resultBox1{
+    margin-left: 1rem;
+    padding-left: 1rem;
+    border-left: 0.2rem solid black;
+  border-image: linear-gradient(to bottom, rgb(1, 62, 161), rgba(0, 0, 0, 0)) 1
+    100%;
+}
+.h44 {
+  color: rgb(58, 58, 58);
+  font-size: medium;
+  margin: 0.2rem auto;
+}
+.h55 {
+  color: grey;
+  margin-bottom: 0.1rem;
+}
+.active {
+  color: green;
+}
+.cancelled {
+  color: red;
+}
+
+.pp {
+  font-size: 0.8rem;
+  color: rgb(71, 71, 71);
+}
