@@ -4,9 +4,6 @@ const { Client, User, sequelize } = require("./db.js");
 const nanoid = require("nanoid");
 const { authCheck } = require("./authMiddleware");
 const { Op } = require("sequelize");
-//Multer to handle the file upload functionality on Create new Route
-// const multer = require('multer')
-// const upload = multer({dest: 'uploads/'})
 
 // get Client
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -15,7 +12,7 @@ router.get("/", async (req, res) => {
   const clientId = req.query.clientId;
   if (clientId) {
     const foundUser = await Client.findOne({
-      where: { clientId:  clientId.trim().toLowerCase() },
+      where: { clientId: clientId.trim().toLowerCase() },
     });
     if (foundUser) {
       res.send({
@@ -40,7 +37,7 @@ router.post("/", authCheck, async (req, res) => {
     const { firstName, lastName, dob, status, document } = req.body;
     // Todo: When document upload functionality is added check for document as well.
     if (firstName && lastName && dob && status) {
-      let IDGen = "IAC-" + nanoid(6)
+      let IDGen = "IAC-" + nanoid(6);
       const createdUser = await Client.create({
         clientId: IDGen.toLowerCase(),
         firstName: firstName,
@@ -74,12 +71,6 @@ router.post("/", authCheck, async (req, res) => {
   }
 });
 
-// Edit Client
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-router.patch("/", (req, res) => {
-  res.send("Update entry");
-});
-
 // Delete Client
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 router.delete("/", authCheck, async (req, res) => {
@@ -88,7 +79,7 @@ router.delete("/", authCheck, async (req, res) => {
     if (clientId) {
       const deletedUser = await Client.findOne({
         where: {
-          clientId: clientId.trim(),
+          clientId: clientId.trim().toLowerCase(),
         },
       }).catch((e) => {
         res.send({

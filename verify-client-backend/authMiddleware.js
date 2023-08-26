@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken");
 
 const authCheck = (req, res, next) => {
   const token = req.headers.authorization;
-  console.log(token)
   jwt.verify(
     token.split(" ")[1],
     process.env.TOKEN_KEY,
@@ -28,23 +27,6 @@ const authCheck = (req, res, next) => {
       }
     }
   );
-  // if (tokenDecoded) {
-  //   const foundUser = await User.findOne({
-  //     where: {
-  //       email: tokenDecoded.email,
-  //     },
-  //   });
-  //   if (foundUser) {
-  //     req.userAuth = true;
-  //     next();
-  //   } else {
-  //     req.userAuth = false;
-  //     next();
-  //   }
-  // } else {
-  //   req.userAuth = false;
-  //   next();
-  // }
 };
 
 module.exports = {
