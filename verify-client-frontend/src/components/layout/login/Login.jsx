@@ -29,9 +29,6 @@ function Login(props) {
       setRegister(false);
     }
   };
-  console.log(userEmail);
-  console.log(userPassword);
-  console.log(key);
 
   //Handle Login (If login successful update props.callback)
 
@@ -65,9 +62,6 @@ function Login(props) {
   // Handle User Registeration and Login if successfull.
   const registerUser = async (e) => {
     e.preventDefault();
-    console.log(key);
-    console.log(userName);
-    console.log(userEmail);
     const registerUser = await fetch(variables.URL + "/user/create", {
       method: "POST",
       headers: {

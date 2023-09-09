@@ -19,14 +19,19 @@ function NewEntry() {
   const [dob, setDob] = useState("");
   const [status, setStatus] = useState(true);
   const [clientCreated, setClientCreated] = useState(false);
+  const [clientError, setClientError] = useState(false);
 
   // Submitting new Users on DB requires authentication
   const submitClient = async (e) => {
     e.preventDefault();
+    setClientError(false);
+    setFname("");
+    setLname("");
+    setDob("");
     const token = localStorage.token;
-    setStatus(e.a);
+    // setStatus(e.a);
     await fetch(Variables.URL + "/data", {
-      method: "POST",
+      method: "POST", //Post method to write to API
       headers: {
         "Content-Type": "application/json",
         authorization: "Bearer " + token,
@@ -46,9 +51,9 @@ function NewEntry() {
           setDob("");
           setClientCreated(data);
 
-          console.log("Created User Successfully", data);
         } else {
-          console.log("Error");
+          setClientError(true);
+          setClientCreated(data)
         }
       })
       .catch((e) => console.log(e));
@@ -93,8 +98,14 @@ function NewEntry() {
           <h4> ID: {clientCreated.user.clientId.toUpperCase()} </h4>
           <h4>
             {" "}
-            Name: {clientCreated.user.firstName} {clientCreated.user.lName}{" "}
+            Name: {clientCreated.user.firstName} {clientCreated.user.lastName}{" "}
           </h4>
+        </>
+      )}
+      {clientError && (
+        <>
+          <h3>ERROR: Try Again</h3>
+          {clientCreated.message}
         </>
       )}
     </>

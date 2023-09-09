@@ -61,7 +61,7 @@ router.post("/", authCheck, async (req, res) => {
       }
     } else {
       res.send({
-        status: false,
+        success: false,
         message:
           "Invalid User Schema ..., Check Client details or Contact Admin",
       });

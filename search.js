@@ -6,7 +6,7 @@ searchForm.addEventListener("submit", async (e) => {
   const query = document.querySelector("#searchInput").value;
 
   console.log(query);
-  await fetch(`http://192.168.1.105:3000/data/?clientId=${query}`)
+  await fetch(`http://localhost:3000/data/?clientId=${query}`)
     .then((resp) => resp.json())
     .then((data) => {
       if (data.success) {
